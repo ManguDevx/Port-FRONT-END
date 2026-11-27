@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de perros</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="../index.html" class="btn-back">
+        Regresar
+    </a>
+    <a href="documents/TALLERFINAL.docx" class="btn-guia" download>Guía</a>
+
+  <h1>Galería de perros</h1>
+
+  <div class="filtro">
+    <label for="selector-raza">Raza</label>
+    <select id="selector-raza">
+      <option value="">Todas las razas</option>
+    </select>
+  </div>
+
+  <div id="mensaje"></div>
+  <p id="contador"></p>
+  <main id="galeria" class="galeria"></main>
+
+  <button id="btn-mas" type="button">Traer 5 imágenes</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

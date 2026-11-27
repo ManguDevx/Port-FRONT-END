@@ -1,0 +1,179 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #050505;
+  color: #fff;
+  min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ---------- Menú ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 12px 24px;
+  background: #0a0b1c;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  z-index: 1000;
+}
+.logo { font-size: 10px; font-weight: 700; letter-spacing: .04em; line-height: 1.1; color: #cfd3e6; }
+.logo b {
+  display: block; font-size: 17px; font-weight: 900;
+  background: linear-gradient(90deg, #1e6bff, #d11fd1);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.menu { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: flex-end; }
+.menu .item { font-size: 15px; font-weight: 500; cursor: default; user-select: none; }
+.menu .ext { font-size: 13px; margin-left: 4px; }
+.banderas { display: flex; gap: 6px; padding-left: 16px; border-left: 1px solid rgba(255,255,255,.18); font-size: 22px; line-height: 1; }
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+  padding: 90px 48px 90px;
+  background: radial-gradient(ellipse at 85% 40%, #0c3a4d 0%, #071a28 40%, #050505 75%);
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #1659f5; padding: 10px 18px; border-radius: 999px;
+  font-size: 13px; font-weight: 700; margin-bottom: 28px;
+}
+.titulo { font-size: clamp(40px, 6vw, 68px); font-weight: 900; line-height: 1.1; margin-bottom: 34px; letter-spacing: -.01em; }
+.titulo .azul {
+  background: linear-gradient(90deg, #1659f5, #0d9488);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.titulo .verde { color: #0d9488; }
+.intro { font-size: clamp(17px, 1.8vw, 24px); line-height: 1.65; color: #8b95a7; max-width: 850px; margin-bottom: 34px; }
+
+/* ---------- Tarjetas ---------- */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 850px; }
+.card {
+  background: #111214; border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px; padding: 22px 24px; min-height: 170px;
+}
+.card-h { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.ico {
+  width: 48px; height: 48px; border-radius: 12px; flex: none;
+  background: linear-gradient(135deg, #ff3d00, #ff6a1a);
+  display: grid; place-items: center; font-size: 24px;
+}
+.card h3 { font-size: 18px; font-weight: 700; }
+.card p { font-size: 14px; line-height: 1.55; color: #8b95a7; }
+
+.frase {
+  max-width: 850px; margin-top: 34px; padding-left: 16px;
+  border-left: 3px solid #1659f5; font-style: italic;
+  font-size: clamp(16px, 1.6vw, 20px); line-height: 1.6; color: #aab3c2;
+}
+
+/* ---------- Imagen ---------- */
+/* La imagen te sigue al hacer scroll */
+.imagen {
+  position: sticky; top: 90px;
+  align-self: start;
+  height: calc(100vh - 110px);
+  display: flex; align-items: center; justify-content: center;
+}
+.imagen-wrap { position: relative; display: inline-block; max-width: 100%; cursor: none; perspective: 900px; }
+.imagen img {
+  display: block; max-width: 100%; max-height: calc(100vh - 130px); object-fit: contain;
+  filter: drop-shadow(0 25px 35px rgba(0,0,0,.6));
+  transform-style: preserve-3d;
+  transition: transform .15s ease-out;
+  will-change: transform;
+}
+
+/* Círculo que sigue al mouse */
+.circulo {
+  position: absolute; width: 110px; height: 110px; border-radius: 50%;
+  border: 3px solid #fff;
+  background-size: cover; background-position: center; background-color: #111;
+  box-shadow: 0 8px 24px rgba(0,0,0,.6);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.6);
+  opacity: 0;
+  transition: opacity .2s, transform .2s;
+}
+.circulo.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.placeholder {
+  width: min(420px, 90%); aspect-ratio: 3 / 4;
+  border: 2px dashed rgba(255,255,255,.25); border-radius: 24px;
+  display: grid; place-items: center; text-align: center;
+  color: #8b95a7; font-size: 15px; padding: 20px;
+}
+
+/* ---------- Flotantes ---------- */
+.fab {
+  position: fixed; right: 16px; z-index: 30;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 24px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.4);
+}
+.wa {
+  position: fixed; left: 18px; bottom: 18px; z-index: 30;
+  width: 64px; height: 64px; border-radius: 50%; background: #16c35b;
+  display: grid; place-items: center; font-size: 30px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.4);
+}
+.tag {
+  position: fixed; right: 60px; bottom: 0; z-index: 25;
+  background: linear-gradient(135deg, #ff3d00, #ff6a1a);
+  padding: 14px 30px; border-radius: 14px 14px 0 0;
+  font-weight: 800; font-size: 20px; display: flex; gap: 10px; align-items: center;
+  transform: rotate(-2deg);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .hero { grid-template-columns: 1fr; padding: 60px 20px 90px; }
+  .imagen { position: static; height: auto; }
+  .imagen-wrap { cursor: auto; }
+  .circulo { display: none; }
+  .menu { display: none; }
+  .nav { padding: 12px 16px; }
+}
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Círculo con foto sobre las tarjetas ---------- */
+.circulo-card {
+  position: fixed; z-index: 50; width: 110px; height: 110px; border-radius: 50%;
+  border: 3px solid #fff; background-color: #1a1a1d;
+  background-size: cover; background-position: center;
+  display: grid; place-items: center; font-size: 44px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.6);
+  pointer-events: none;
+  transform: translate(24px, 24px) scale(.6);
+  opacity: 0;
+  transition: opacity .2s, transform .2s;
+}
+.circulo-card.visible { opacity: 1; transform: translate(24px, 24px) scale(1); }
+@media (hover: none) { .circulo-card { display: none; } }
+
+.btn-back {
+    position: relative;
+    top: 1rem;
+    left: 1rem;
+    z-index: 50;
+    padding: 0.9rem 1.2rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.btn-back:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, #38bdf8, #a78bfa);
+    border-color: transparent;
+    color: #0f172a;
+}

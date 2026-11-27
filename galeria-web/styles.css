@@ -1,0 +1,218 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 16px;
+  background: #f4f6f8;
+  color: #222;
+}
+
+h1 { text-align: center; }
+
+.filtro {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+select, button {
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #888;
+}
+
+button {
+  background: #39a900;
+  color: #fff;
+  border-color: #39a900;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #bbb;
+  border-color: #bbb;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+select:focus-visible, button:focus-visible {
+  outline: 3px solid #1b5e20;
+  outline-offset: 2px;
+}
+
+.mensaje {
+  max-width: 600px;
+  margin: 8px auto;
+  padding: 10px;
+  text-align: center;
+  border-radius: 6px;
+}
+.mensaje.cargando { background: #e3f2fd; }
+.mensaje.error { background: #fdecea; color: #b71c1c; }
+.mensaje.error button { margin-left: 8px; }
+
+#contador { text-align: center; font-weight: bold; }
+
+.galeria {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tarjeta {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tarjeta img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.tarjeta p {
+  margin: 0;
+  padding: 8px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#btn-mas {
+  display: block;
+  margin: 20px auto;
+}
+
+/* Tableta: 2 columnas */
+@media (min-width: 600px) {
+  .galeria { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Escritorio: 4 columnas */
+@media (min-width: 992px) {
+  .galeria { grid-template-columns: repeat(4, 1fr); }
+}
+
+.btn-back {
+    position: fixed;
+    top: max(1rem, env(safe-area-inset-top));
+    left: max(1rem, env(safe-area-inset-left));
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 1.1rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    white-space: nowrap;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+/* El hover solo en dispositivos con mouse (en el celular se quedaba "pegado") */
+@media (hover: hover) {
+    .btn-back:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(90deg, #38bdf8, #a78bfa);
+        border-color: transparent;
+        color: #0f172a;
+    }
+}
+
+/* Efecto al tocar en el celular */
+.btn-back:active {
+    transform: scale(0.96);
+    background: linear-gradient(90deg, #38bdf8, #a78bfa);
+    border-color: transparent;
+    color: #0f172a;
+}
+
+.btn-back:focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+/* Celular: más compacto y sin tapar el contenido */
+@media (max-width: 600px) {
+    .btn-back {
+        top: max(0.6rem, env(safe-area-inset-top));
+        left: max(0.6rem, env(safe-area-inset-left));
+        padding: 0.6rem 0.9rem;
+        font-size: 0.9rem;
+    }
+
+    /* Deja espacio arriba para que el botón no tape el título */
+    body {
+        padding-top: 4.5rem;
+    }
+}
+
+.btn-guia {
+    position: fixed;
+    top: max(1rem, env(safe-area-inset-top));
+    right: max(1rem, env(safe-area-inset-right));
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 1.1rem;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    white-space: nowrap;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+@media (hover: hover) {
+    .btn-guia:hover {
+        transform: translateY(-3px);
+        background: linear-gradient(90deg, #38bdf8, #a78bfa);
+        border-color: transparent;
+        color: #0f172a;
+    }
+}
+
+.btn-guia:active {
+    transform: scale(0.96);
+    background: linear-gradient(90deg, #38bdf8, #a78bfa);
+    border-color: transparent;
+    color: #0f172a;
+}
+
+.btn-guia:focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .btn-guia {
+        top: max(0.6rem, env(safe-area-inset-top));
+        right: max(0.6rem, env(safe-area-inset-right));
+        padding: 0.6rem 0.9rem;
+        font-size: 0.9rem;
+    }
+}
